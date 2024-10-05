@@ -1,0 +1,51 @@
+{{ define `site-header` }}
+<header id="site-header">
+	<nav id="site-nav">
+		<a href="{{ .Parent.RelPermalink }}">← {{ .Parent.LinkTitle }}</a>
+	</nav>
+</header>
+{{ end }}
+
+{{ define `main` }}
+<style>
+	:root {
+		color-scheme: dark;
+	}
+	body {
+		max-width: unset;
+	}
+	#site-header {
+		justify-content: center;
+	}
+	#site-nav {
+		margin: -3ch 0 4ch; /* -#site-header margin-top, body padding-top */
+		text-transform: unset;
+	}
+	main {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(35vmin, 1fr));
+		gap: 2.5ch;
+		text-align: center;
+
+		> img {
+			aspect-ratio: 1;
+			object-fit: scale-down;
+			width: 100%;
+		}
+	}
+</style>
+
+{{ range (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
+	{{ range .Params.photos }}
+		{{ $opts := (dict
+			`IsBlock` false
+			`Destination` .src
+			`Text` .alt
+			`Sizes` (slice 250 500)
+		)}}
+		{{ partialCached `figure` $opts (printf `%x` $opts) }}
+	{{ end }}
+{{ else }}
+	{{ partialCached `wip` . }}
+{{ end }}
+{{ end }}

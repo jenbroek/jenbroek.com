@@ -1,0 +1,52 @@
+{{ with .Paginator }}
+	{{ if gt .TotalPages 1 }}
+<nav aria-label="Pagination" class="pagination">
+		{{ partial `partials/_inline/pagination-item` (dict
+			`Page` .First
+			`Cur` (eq .PageNumber .First.PageNumber)
+		)}}
+
+		{{ if lt .TotalPages 3 }}
+	<span aria-hidden="true">|</span>
+		{{ else }}
+			{{ $start := math.Max 2 (sub .PageNumber (math.Floor (div site.Params.pagination.slots 2))) }}
+			{{ $end := math.Min (sub .TotalPages 1) (sub (add $start site.Params.pagination.slots) 1) }}
+			{{ if lt (add (sub $end $start) 1) site.Params.pagination.slots }}
+				{{ $start = math.Max 2 (add (sub $end site.Params.pagination.slots) 1) }}
+			{{ end }}
+
+			{{ range $i := seq $start $end }}
+				{{ if and (eq $i (int $start)) (gt $start 2) }}
+	<span aria-hidden="true">…</span>
+				{{ else }}
+	<span aria-hidden="true">|</span>
+				{{ end }}
+
+				{{ partial `partials/_inline/pagination-item` (dict
+					`Page` (index $.Paginator.Pagers (sub $i 1))
+					`Cur` (eq $i $.Paginator.PageNumber)
+				)}}
+			{{ end }}
+
+			{{ if lt $end (sub .TotalPages 1) }}
+	<span aria-hidden="true">…</span>
+			{{ else }}
+	<span aria-hidden="true">|</span>
+			{{ end }}
+		{{ end }}
+
+		{{ partial `partials/_inline/pagination-item` (dict
+			`Page` .Last
+			`Cur` (eq .PageNumber .Last.PageNumber)
+		)}}
+</nav>
+	{{ end }}
+{{ end }}
+
+{{ define `partials/_inline/pagination-item` }}
+{{ if .Cur }}
+	<a aria-current="page" tabindex="-1">{{ .Page.PageNumber }}</a>
+{{ else }}
+	<a href="{{ .Page.URL }}">{{ .Page.PageNumber }}</a>
+{{ end }}
+{{ end }}

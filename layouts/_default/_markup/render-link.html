@@ -1,0 +1,5 @@
+<a href="{{ .Destination | safeURL }}"
+	{{ with .Title }}title="{{ . }}"{{ end }}
+	{{ if (urls.Parse .Destination).IsAbs }}rel="external nofollow noreferrer"{{ end }}
+>{{ .Text | safeHTML }}</a>
+{{- /**/ -}}

@@ -1,0 +1,4 @@
+---
+title: now
+aliases: [/now]
+---

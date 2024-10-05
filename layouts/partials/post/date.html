@@ -1,0 +1,10 @@
+{{ if not .Date.IsZero }}
+	{{ $a := .Date.Format `2006.01.02` }}
+	{{ $b := .Lastmod.Format `2006.01.02` }}
+<div class="post-dates row">
+	<span class="sr-only">Published</span> <time datetime="{{ $a }}">{{ $a }}</time>
+	{{ if gt $b $a }}
+	<span class="sr-only">Last modified</span> <time datetime="{{ $b }}">{{ $b }}</time>
+	{{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,50 @@
+{{ define `main` }}
+{{ .Content }}
+
+<style>
+	.polaroid:hover {
+		transform: scale(1.1) rotate(7.5deg);
+		z-index: 1;
+		transition: transform 0.1s;
+	}
+</style>
+
+<section>
+	<h2>Recent photos</h2>
+	{{ with first 3 (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
+	<ol class="noindent row nowrap" style="margin-bottom:3ch">
+		{{ range . }}
+		<li>
+			<a href="{{ .RelPermalink }}">
+				{{ $opts := (dict
+					`Destination` (index .Params.photos 0).src
+					`Text` (index .Params.photos 0).alt
+					`Title` (replaceRE `\s+\(.*?$` `` .LinkTitle)
+					`Class` `polaroid`
+					`Sizes` (slice 250 500)
+				)}}
+				{{ partial `figure` $opts }}
+			</a>
+		</li>
+		{{ end }}
+	</ol>
+	{{ else }}
+		{{ partialCached `wip` . }}
+	{{ end }}
+	<a href="{{ relURL `/photos` }}">More →</a>
+</section>
+
+<section>
+	<h2>Recent posts</h2>
+	{{ with first 4 (where site.RegularPages `Section` `posts`).ByDate.Reverse }}
+	<ol class="noindent" style="margin-bottom:2ch">
+		{{ range . }}
+		<li>{{ partial `post/entry` (dict `Page` . `HL` 3) }}</li>
+		{{ end }}
+	</ol>
+	{{ else }}
+		{{ partialCached `wip` . }}
+	{{ end }}
+	<a href="{{ relURL `/posts` }}">More →</a>
+</section>
+{{ end }}

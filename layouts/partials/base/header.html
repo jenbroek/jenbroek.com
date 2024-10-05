@@ -1,0 +1,15 @@
+<header id="site-header">
+	<nav id="site-nav">
+		{{ range site.Menus.main }}
+		<a href="{{ .URL }}">{{ .Name | safeHTML }}</a>
+		{{ end }}
+	</nav>
+
+	<div id="site-nav-btns">
+		<label for="toggle-site-nav" aria-label="Toggle site navigation">⇄</label>
+		<input type="checkbox" id="toggle-site-nav" class="sr-only">
+
+		<label for="invert-colors" aria-label="Inverted colors mode">💡</label>
+		<input type="checkbox" id="invert-colors" class="sr-only">
+	</div>
+</header>

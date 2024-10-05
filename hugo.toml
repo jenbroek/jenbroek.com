@@ -1,0 +1,71 @@
+baseURL = "https://jenbroek.com/"
+capitalizeListTitles = false
+cleanDestinationDir = true
+copyright = "© 2024 jenbroek"
+disableAliases = true
+disableKinds = ["rss"]
+enableGitInfo = true
+languageCode = "en-US"
+removePathAccents = true
+title = "jenbroek"
+
+[cascade.build]
+publishResources = false
+
+[params.site]
+	description = "Jens is a software engineer with a passion for keeping it simple, and learning about software design."
+	cdnURL = "https://cdn.jenbroek.com/"
+	imgSizes = [250, 500, 1000, 2000]
+[params.pagination]
+	slots = 3
+
+[pagination]
+disableAliases = true
+pagerSize = 4
+
+[taxonomies]
+	tag = "tags"
+
+[permalinks.page]
+	posts = "/:year/:month/:day/:slugorfilename/"
+	photos = "/:year/:month/:day/:slugorfilename/"
+
+[[menus.main]]
+	name = '<svg id="avatar" viewBox="0 0 768 768"><title>Home</title><use href="/avatar.svg#_"/></svg>'
+	pageRef = "/"
+	weight = 1
+[[menus.main]]
+	name = "Posts"
+	pageRef = "/posts"
+	weight = 2
+[[menus.main]]
+	name = "Photos"
+	pageRef = "/photos"
+	weight = 3
+
+[markup]
+	goldmark.parser.attribute.block = true
+[markup.goldmark.extensions.extras]
+	mark.enable = true
+[markup.highlight]
+	anchorLineNos = true
+	guessSyntax = true
+	style = "algol"
+
+[mediaTypes]
+"text/cloudflare".delimiter = ""
+
+[outputFormats."_redirects"]
+baseName = "_redirects"
+isPlainText = true
+mediaType = "text/cloudflare"
+notAlternative = true
+
+[outputFormats."_headers"]
+baseName = "_headers"
+isPlainText = true
+mediaType = "text/cloudflare"
+notAlternative = true
+
+[outputs]
+home = ["html", "_redirects", "_headers"]

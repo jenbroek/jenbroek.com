@@ -1,0 +1,11 @@
+{{ define `main` }}
+<h2 id="page-title">{{ title .Title }}</h2>
+
+{{ .Content }}
+
+<ul aria-labelledby="page-title" class="terms">
+	{{ range .Pages.ByTitle }}
+	<li><a href="{{ .RelPermalink }}">{{ lower .LinkTitle }}</a></li>
+	{{ end }}
+</ul>
+{{ end }}

@@ -1,0 +1,5 @@
+{{ range $p := site.Pages }}
+	{{- range .Aliases }}
+		{{- printf "%s %s 308\n" . $p.RelPermalink }}
+	{{- end -}}
+{{ end -}}

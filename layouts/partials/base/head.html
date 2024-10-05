@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{ with or .Description
+           (index (split .Content `</p>`) 0)
+           site.Params.site.description | plainify | replaceRE `^\s*|\s*$` `` }}
+<meta name="description" content="{{ . }}">
+{{ end }}
+{{ if .Params.noIndex }}
+<meta name="robots" content="noindex">
+{{ end }}
+
+<title>{{ partial `fn/title` . }}</title>
+<link rel="icon" href="{{ relURL `/favicon.svg` }}">
+
+{{ with resources.Get `style.css` | minify | fingerprint `sha512` }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{ end }}
+
+{{ with resources.Get `script.js` | minify | fingerprint `sha512` }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{ end }}

@@ -1,0 +1,6 @@
+<figure>
+	{{ (transform.HighlightCodeBlock .).Wrapped }}
+	{{ with index .Attributes `data-caption` }}
+	<figcaption>{{ . | markdownify }}</figcaption>
+	{{ end }}
+</figure>

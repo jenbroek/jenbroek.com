@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.LanguageCode `en-US` }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+	<head>
+		{{ partial `base/head` . }}
+	</head>
+	<body>
+		<a href="#content" id="skip-to-content" class="sr-only">Skip to content</a>
+
+		{{ block `site-header` . }}
+			{{ partialCached `base/header` . }}
+		{{ end }}
+
+		<main id="content">
+			{{ block `main` . }}{{ end }}
+		</main>
+
+		<footer id="site-footer">{{ site.Copyright }}</footer>
+	</body>
+</html>

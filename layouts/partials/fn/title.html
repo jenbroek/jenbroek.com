@@ -1,0 +1,8 @@
+{{ $title := site.Title }}
+{{ if not .IsHome }}
+	{{ $title = printf `%s – %s` (lower .Title) $title }}
+	{{ if and (eq .Kind `term`) (eq .Section `tags`) }}
+		{{ $title = printf `#%s` $title }}
+	{{ end }}
+{{ end }}
+{{ return $title }}

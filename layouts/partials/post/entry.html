@@ -1,0 +1,36 @@
+{{ with $page := .Page }}
+<article class="post-entry">
+	{{ if and (default false $.RenderPhotos) (isset .Params `photos`) }}
+		{{ with first 3 .Params.photos }}
+			{{ $len := len . }}
+	<aside class="polaroids">
+			{{ range $i, $_ := . }}
+				{{ $opts := (dict
+					`Destination` .src
+					`Title` (cond (eq $i (sub $len 1))
+						(partialCached `post/date` $page ($page.Date.Format `2006.01.02`) ($page.Lastmod.Format `2006.01.02`))
+						``
+					)
+					`Class` `polaroid`
+				)}}
+				{{ partial `figure` $opts }}
+			{{ end }}
+	</aside>
+
+	<div>
+		<h{{ $.HL }}><a href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a></h{{ $.HL }}>
+		<p>{{ $page.Summary }}</p>
+		<a href="{{ $page.RelPermalink }}" aria-label="Goto page">→</a>
+	</div>
+		{{ end }}
+	{{ else }}
+	<h{{ $.HL }}><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h{{ $.HL }}>
+		{{ partialCached `post/date` . (.Date.Format `2006.01.02`) (.Lastmod.Format `2006.01.02`) }}
+
+		{{ if $.Summary }}
+	<p>{{ .Summary }}</p>
+	<a href="{{ .RelPermalink }}" aria-label="Goto page">→</a>
+		{{ end }}
+	{{ end }}
+</article>
+{{ end }}

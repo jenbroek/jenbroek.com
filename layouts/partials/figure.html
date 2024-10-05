@@ -1,0 +1,32 @@
+{{ $url := urls.Parse .Destination }}
+
+{{ $src := $url }}
+{{ $id := `` }}
+
+{{ if eq $url.Scheme `cdn` }}
+	{{ $id = (strings.TrimPrefix `/` $url.Path) }}
+	{{ $src = printf `%simg/2000/%s.webp` site.Params.site.cdnURL $id }}
+{{ end }}
+
+{{ if default true .IsBlock }}
+<figure{{ with .Class }} class="{{ . }}"{{ end }}>
+{{ end }}
+	<img src="{{ $src }}"
+	     alt="{{ or .Text (path.BaseName $src | strings.FirstUpper | replaceRE `[_-]` ` `) }}"
+	     {{ if $id }}
+	     	{{ $sizes := or .Sizes site.Params.site.imgSizes }}
+	     srcset="{{ range $i, $s := $sizes }}
+	             	{{- if $i }}, {{ end }}
+	             	{{- printf `%simg/%d/%s.webp` site.Params.site.cdnURL $s $id }} {{ $s }}w
+	             {{- end }}"
+	     {{ end }}
+	     {{ if $url.IsAbs }}
+	     referrerpolicy="no-referrer"
+	     {{ end }}
+	     loading="lazy">
+{{ if default true .IsBlock }}
+	{{ with .Title }}
+	<figcaption>{{ . }}</figcaption>
+	{{ end }}
+</figure>
+{{ end }}
