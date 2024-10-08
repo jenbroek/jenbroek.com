@@ -3,11 +3,12 @@
 export OUTPUT_DIR=.upload
 
 process() {
-	f=$1
+	p=$1
+	f=${p##*/}
 	shift
 	for w in $(sed -nr '/imgSizes/s/[^0-9]+/ /gp' hugo.toml); do
 		mkdir -p $OUTPUT_DIR/$w
-		magick.exe -quiet "$f" -resize $w "$OUTPUT_DIR/$w/$f"
+		magick.exe -quiet "$p" -resize $w "$OUTPUT_DIR/$w/$f"
 		"$@" "$OUTPUT_DIR/$w/$f"
 		magick.exe -quiet -quality 90 "$OUTPUT_DIR/$w/$f" "$OUTPUT_DIR/$w/${f%.*}.webp"
 	done
