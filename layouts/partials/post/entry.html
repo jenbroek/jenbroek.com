@@ -1,12 +1,13 @@
 {{ with $page := .Page }}
 <article class="post-entry">
 	{{ if and (default false $.RenderPhotos) (isset .Params `photos`) }}
-		{{ with first 3 .Params.photos }}
+		{{ with first 3 (partial `fn/vals` .Params.photos) | collections.Reverse }}
 			{{ $len := len . }}
 	<aside class="polaroids">
 			{{ range $i, $_ := . }}
 				{{ $opts := (dict
 					`Destination` .src
+					`Text` .alt
 					`Title` (cond (eq $i (sub $len 1))
 						(partialCached `post/date` $page ($page.Date.Format `2006.01.02`) ($page.Lastmod.Format `2006.01.02`))
 						``

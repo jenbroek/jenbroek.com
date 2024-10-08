@@ -1,0 +1,45 @@
+{{/*
+   * TODO:
+   * Replace with CSS using `attr()` and `counter()`:
+   *
+   * ```css
+   * [data-grid] {
+   * 	counter-reset: i;
+   * 	grid-template-areas: attr(data-grid);
+   * 	& > li {
+   * 		counter-increment: i;
+   * 		grid-area: ident(counter(i, lower-alpha));
+   * 	}
+   * }
+   * ```
+   *
+   * Blocked-by: https://github.com/w3c/csswg-drafts/issues/9141
+   */}}
+{{ with .Page.Params.photos }}
+	{{ $photos := . }}
+	{{ if reflect.IsMap $photos }}
+		{{ $photos = index $photos ($.Get 0) }}
+	{{ end }}
+
+	{{ $grid := slice }}
+	{{ with $.Page.Params.grid }}
+		{{ $grid = . }}
+		{{ if reflect.IsMap $grid }}
+			{{ $grid = index $grid ($.Get 0) }}
+		{{ end }}
+	{{ end }}
+<ul class="auto-grid"
+    {{ with $grid }}style="grid-template:{{ trim (printf `%+q` .) `[]` | safeCSS }}"{{ end }}>
+
+	{{ range $i, $_ := $photos }}
+	<li{{ if $grid }} style="grid-area: {{ printf `%c` (add 97 $i) }}"{{ end }}>
+		{{ $opts := (dict
+			`Destination` .src
+			`Text` .alt
+			`Title` (.cap | markdownify)
+		)}}
+		{{ partialCached `figure` $opts (printf `%x` $opts) }}
+	</li>
+	{{ end }}
+</ul>
+{{ end }}

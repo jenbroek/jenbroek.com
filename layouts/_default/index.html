@@ -14,11 +14,12 @@
 	{{ with first 3 (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
 	<ol class="noindent row nowrap" style="margin-bottom:3ch">
 		{{ range . }}
+			{{ $photos := partial `fn/vals` .Params.photos }}
 		<li>
 			<a href="{{ .RelPermalink }}">
 				{{ $opts := (dict
-					`Destination` (index .Params.photos 0).src
-					`Text` (index .Params.photos 0).alt
+					`Destination` (index $photos 0).src
+					`Text` (index $photos 0).alt
 					`Title` (replaceRE `\s+\(.*?$` `` .LinkTitle)
 					`Class` `polaroid`
 					`Sizes` (slice 250 500)

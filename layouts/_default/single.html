@@ -18,38 +18,8 @@
 
 {{ .Content }}
 
-{{/*
-   * TODO:
-   * Replace with CSS using `attr()` and `counter()`:
-   *
-   * ```css
-   * [data-grid] {
-   * 	counter-reset: i;
-   * 	grid-template-areas: attr(data-grid);
-   * 	& > li {
-   * 		counter-increment: i;
-   * 		grid-area: ident(counter(i, lower-alpha));
-   * 	}
-   * }
-   * ```
-   *
-   * Blocked-by: https://github.com/w3c/csswg-drafts/issues/9141
-   */}}
-{{ with .Params.photos }}
-<ul class="auto-grid"
-	{{ with $.Params.grid }}style="grid-template:{{ trim (printf `%+q` .) `[]` | safeCSS }}"{{ end }}>
-
-	{{ range $i, $_ := . }}
-	<li{{ if $.Params.grid }} style="grid-area: {{ printf `%c` (add 97 $i) }}"{{ end }}>
-		{{ $opts := (dict
-			`Destination` .src
-			`Text` .alt
-			`Title` (.cap | markdownify)
-		)}}
-		{{ partialCached `figure` $opts (printf `%x` $opts) }}
-	</li>
-	{{ end }}
-</ul>
+{{ if reflect.IsSlice .Params.photos }}
+	{{ `{{< photos >}}` | .RenderString }}
 {{ end }}
 
 {{ with .Params.changelog }}
