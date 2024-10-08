@@ -71,10 +71,21 @@ body {
 	font-family: var(--ft-sans);
 }
 
-main > h1, main > header > h1 {
-	/* make look like h2 */
-	font-size: 1.5em;
-	margin: 0.83em 0;
+main {
+	/* make look like lower heading lvl */
+	> h1,
+	> header > h1 {
+		font-size: 1.5em;
+		margin: 0.83em 0;
+	}
+	> h2 {
+		font-size: 1.17em;
+		margin: 1em 0;
+	}
+	> h3 {
+		font-size: 1em;
+		margin: 1.33em 0;
+	}
 }
 
 :where(h3, h4, h5)[id]:hover::before {
@@ -103,7 +114,10 @@ mark {
 
 :where(ul, ol):not(.noindent, .auto-grid, .terms, .polaroids) {
 	line-height: 1.5;
+	list-style-type: square;
 	li {
+		font-family: var(--ft-mono);
+		font-size: 0.85rem;
 		margin-top: 0.5ch;
 	}
 }
