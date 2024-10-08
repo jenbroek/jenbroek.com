@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export OUTPUT_DIR=.upload
+export OUTPUT_DIR=static/img
 
 process() {
 	p=$1

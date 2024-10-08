@@ -7,4 +7,4 @@ hugo_stats.json
 .DS_Store
 nohup.out
 TODO.md
-/.upload/
+/static/img/[0-9]*/

@@ -2,10 +2,11 @@
 
 {{ $src := $url }}
 {{ $id := `` }}
+{{ $cdnURL := cond hugo.IsDevelopment `/` site.Params.site.cdnURL }}
 
 {{ if eq $url.Scheme `cdn` }}
 	{{ $id = (strings.TrimPrefix `/` $url.Path) }}
-	{{ $src = printf `%simg/2000/%s.webp` site.Params.site.cdnURL $id }}
+	{{ $src = printf `%simg/2000/%s.webp` $cdnURL $id }}
 {{ end }}
 
 {{ if default true .IsBlock }}
@@ -17,7 +18,7 @@
 	     	{{ $sizes := or .Sizes site.Params.site.imgSizes }}
 	     srcset="{{ range $i, $s := $sizes }}
 	             	{{- if $i }}, {{ end }}
-	             	{{- printf `%simg/%d/%s.webp` site.Params.site.cdnURL $s $id }} {{ $s }}w
+	             	{{- printf `%simg/%d/%s.webp` $cdnURL $s $id }} {{ $s }}w
 	             {{- end }}"
 	     {{ end }}
 	     {{ if $url.IsAbs }}
