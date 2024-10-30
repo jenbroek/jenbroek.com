@@ -16,7 +16,7 @@
 		{{ range . }}
 			{{ $photos := partial `fn/vals` .Params.photos }}
 		<li>
-			<a href="{{ .RelPermalink }}">
+			<a href="{{ .RelPermalink }}" aria-label="{{ .LinkTitle }}">
 				{{ $opts := (dict
 					`Destination` (index $photos 0).src
 					`Text` (index $photos 0).alt
@@ -32,7 +32,7 @@
 	{{ else }}
 		{{ partialCached `wip` . }}
 	{{ end }}
-	<a href="{{ relURL `/photos` }}">More →</a>
+	<a href="{{ relURL `/photos` }}" aria-label="More photos">More →</a>
 </section>
 
 <section>
@@ -46,6 +46,6 @@
 	{{ else }}
 		{{ partialCached `wip` . }}
 	{{ end }}
-	<a href="{{ relURL `/posts` }}">More →</a>
+	<a href="{{ relURL `/posts` }}" aria-label="More posts">More →</a>
 </section>
 {{ end }}

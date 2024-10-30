@@ -38,7 +38,7 @@ html {
 :focus-visible {
 	outline: revert !important;
 }
-[for]:has(+ .sr-only:focus-visible) {
+label:has(.sr-only:focus-visible) {
 	outline: auto;
 }
 
@@ -299,16 +299,15 @@ input.sr-only {
 #site-nav-btns {
 	margin-top: 3.5ch; /* (#avatar height / 2) - 1 */
 
-	[for] {
+	label {
 		display: inline-block;
-		margin-left: 0.5ch;
+		margin-left: 1ch;
 		cursor: pointer;
 		user-select: none;
 		filter: grayscale(100%);
 	}
 
-	#toggle-site-nav,
-	[for="toggle-site-nav"] {
+	:has(> #toggle-site-nav) {
 		@media (width >= 640px) {
 			display: none;
 		}
@@ -368,7 +367,10 @@ input.sr-only {
 	display: inline-flex;
 	color: var(--cl-30);
 
-	time:has(~ time) {
+	&, dd {
+		margin: 0;
+	}
+	dd:has(~ dd) {
 		text-decoration: line-through;
 	}
 }
