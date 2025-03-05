@@ -21,6 +21,10 @@ for f in "${@:?no args given}"; do
 		image/png)
 			sem -j+0 process "$f" optipng -q
 			;;
+		image/heic)
+			magick.exe mogrify -format jpeg "$f"
+			f=${f%.*}.jpeg
+			;&
 		image/jpeg)
 			sem -j+0 process "$f" jpegoptim -qs
 			;;
