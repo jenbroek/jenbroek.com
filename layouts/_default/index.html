@@ -20,7 +20,7 @@
 				{{ $opts := (dict
 					`Destination` (index $photos 0).src
 					`Text` (index $photos 0).alt
-					`Title` (replaceRE `\s+\(.*?$` `` .LinkTitle)
+					`Title` .LinkTitle
 					`Class` `polaroid`
 					`Sizes` (slice 250 500)
 				)}}
