@@ -1,0 +1,21 @@
+{{ $url := urls.Parse .Destination }}
+{{ $cdnURL := cond hugo.IsDevelopment `/` site.Params.site.cdnURL }}
+
+{{ $result := dict `Src` $url `SrcSet` (slice) }}
+
+{{ if eq $url.Scheme `cdn` }}
+	{{ $id := strings.TrimPrefix `/` $url.Path }}
+	{{ $srcset := $result.SrcSet }}
+
+	{{ range (or .Sizes site.Params.site.imgSizes) }}
+		{{ $srcset = $srcset | append (dict
+		   `Src` (printf `%simg/%d/%s.webp` $cdnURL . $id)
+		   `Size` .
+		)}}
+	{{ end }}
+
+	{{ $largest := index $srcset (sub (len $srcset) 1) }}
+	{{ $result = dict `Src` $largest.Src `SrcSet` $srcset }}
+{{ end }}
+
+{{ return $result }}

@@ -10,6 +10,16 @@
 <meta name="robots" content="noindex">
 {{ end }}
 
+{{ template "_internal/opengraph.html" . }}
+
+{{ with .Params.photos }}
+	{{ range partial `fn/vals` . }}
+		{{ $permalink := partial `fn/img-permalink` (dict `Destination` .src) }}
+<meta property="og:image" content="{{ $permalink.Src }}">
+<meta property="og:image:alt" content="{{ partial `fn/img-alt` (slice .alt $permalink.Src) }}">
+	{{ end }}
+{{ end }}
+
 <title>{{ partial `fn/title` . }}</title>
 <link rel="icon" href="{{ relURL `/favicon.svg` }}">
 
