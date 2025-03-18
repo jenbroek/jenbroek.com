@@ -1,32 +1,30 @@
 #!/bin/bash
 
-export OUTPUT_DIR=static/img
+dest=static/img
 
 process() {
 	p=$1
 	f=${p##*/}
 	shift
 	for w in $(sed -nr '/imgSizes/s/[^0-9]+/ /gp' hugo.toml); do
-		mkdir -p $OUTPUT_DIR/$w
-		magick.exe -quiet "$p" -resize $w "$OUTPUT_DIR/$w/$f"
-		"$@" "$OUTPUT_DIR/$w/$f"
-		magick.exe -quiet -quality 90 "$OUTPUT_DIR/$w/$f" "$OUTPUT_DIR/$w/${f%.*}.webp"
+		mkdir -p $dest/$w
+		magick.exe -quiet "$p" -resize $w "$dest/$w/$f"
+		"$@" "$dest/$w/$f"
+		magick.exe -quiet -quality 90 "$dest/$w/$f" "$dest/$w/${f%.*}.webp"
 	done
 }
-
-export -f process
 
 for f in "${@:?no args given}"; do
 	case $(file -b --mime-type "$f") in
 		image/png)
-			sem -j+0 process "$f" optipng -q
+			process "$f" optipng -q &
 			;;
 		image/heic)
 			magick.exe mogrify -format jpeg "$f"
 			f=${f%.*}.jpeg
 			;&
 		image/jpeg)
-			sem -j+0 process "$f" jpegoptim -qs
+			process "$f" jpegoptim -qs &
 			;;
 		*)
 			echo unrecognized type >&2
@@ -34,4 +32,5 @@ for f in "${@:?no args given}"; do
 			;;
 	esac
 done
-sem --wait
+
+wait
