@@ -1,7 +1,7 @@
 baseURL = "https://jenbroek.com/"
 capitalizeListTitles = false
 cleanDestinationDir = true
-copyright = "© 2024 jenbroek"
+copyright = '© 2024 <a href="https://github.com/jenbroek" rel="me external nofollow noreferrer">jenbroek</a>'
 disableAliases = true
 disableKinds = ["rss"]
 enableGitInfo = true
