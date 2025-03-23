@@ -1,7 +1,9 @@
 {{ define `main` }}
 <header>
 	<h1>{{ .Title }}</h1>
-	{{ with partialCached `post/date` . (.Date.Format `2006.01.02`) (.Lastmod.Format `2006.01.02`) }}
+	{{ with partialCached `post/date` .
+	    (.Date.Truncate (time.ParseDuration `24h`))
+	    (.Lastmod.Truncate (time.ParseDuration `24h`)) }}
 	<div class="row">
 		{{ . }}
 

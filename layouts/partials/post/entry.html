@@ -9,7 +9,9 @@
 					`Destination` .src
 					`Text` .alt
 					`Title` (cond (eq $i (sub $len 1))
-						(partialCached `post/date` $page ($page.Date.Format `2006.01.02`) ($page.Lastmod.Format `2006.01.02`))
+						(partialCached `post/date` $page
+						    ($page.Date.Truncate (time.ParseDuration `24h`))
+						    ($page.Lastmod.Truncate (time.ParseDuration `24h`)))
 						``
 					)
 					`Class` `polaroid`
@@ -26,7 +28,9 @@
 		{{ end }}
 	{{ else }}
 	<h{{ $.HL }}><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h{{ $.HL }}>
-		{{ partialCached `post/date` . (.Date.Format `2006.01.02`) (.Lastmod.Format `2006.01.02`) }}
+		{{ partialCached `post/date` .
+		    (.Date.Truncate (time.ParseDuration `24h`))
+		    (.Lastmod.Truncate (time.ParseDuration `24h`)) }}
 
 		{{ if $.ShowSummary }}
 	<p>{{ partial `fn/summary` . }}</p>
