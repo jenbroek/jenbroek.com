@@ -1,9 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{ with or .Description
-           .Params.summary
-           (index (split .Content `</p>`) 0)
-           site.Params.site.description | plainify | strings.TrimSpace }}
+{{ with or (.Description | plainify | strings.TrimSpace)
+           (partial `fn/summary` .)
+           (site.Params.site.description | plainify | strings.TrimSpace) }}
 <meta name="description" content="{{ . }}">
 {{ end }}
 {{ if .Params.noIndex }}
