@@ -3,7 +3,7 @@
 {{ with or (.Description | plainify | strings.TrimSpace)
            (partial `fn/summary` .)
            (site.Params.site.description | plainify | strings.TrimSpace) }}
-<meta name="description" content="{{ . }}">
+<meta name="description" content="{{ . | htmlEscape }}">
 {{ end }}
 {{ if .Params.noIndex }}
 <meta name="robots" content="noindex">
