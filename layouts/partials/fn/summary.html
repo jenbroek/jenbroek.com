@@ -1,0 +1,2 @@
+{{ return or (.Params.summary | plainify | strings.TrimSpace)
+             (index (split .Content `</p>`) 0 | plainify | strings.TrimSpace) }}

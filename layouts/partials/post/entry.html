@@ -20,7 +20,7 @@
 
 	<div>
 		<h{{ $.HL }}><a href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a></h{{ $.HL }}>
-		<p>{{ $page.Summary }}</p>
+		<p>{{ partial `fn/summary` $page }}</p>
 		<a href="{{ $page.RelPermalink }}" aria-label="Goto page">→</a>
 	</div>
 		{{ end }}
@@ -28,8 +28,8 @@
 	<h{{ $.HL }}><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h{{ $.HL }}>
 		{{ partialCached `post/date` . (.Date.Format `2006.01.02`) (.Lastmod.Format `2006.01.02`) }}
 
-		{{ if $.Summary }}
-	<p>{{ .Summary }}</p>
+		{{ if $.ShowSummary }}
+	<p>{{ partial `fn/summary` . }}</p>
 	<a href="{{ .RelPermalink }}" aria-label="Goto page">→</a>
 		{{ end }}
 	{{ end }}

@@ -2,11 +2,9 @@
 title: Seattle (Aug '23)
 date: 2024-10-08T13:55:35+02:00
 tags: [travel]
-summary: >-
-    My first long-distance solo trip, to Seattle and Boston!
-    Coincidentally my first time flying too.
 changelog:
     2024-10-13: Reordered images, highlighted places
+    2025-03-23: Altered summary
 grid:
     seattle_museums:
         - a b c
