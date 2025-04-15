@@ -27,8 +27,8 @@ pagerSize = 4
 	tag = "tags"
 
 [permalinks.page]
-	posts = "/:year/:month/:day/:slugorfilename/"
-	photos = "/:year/:month/:day/:slugorfilename/"
+	posts = "/:year/:month/:day/:slugorcontentbasename/"
+	photos = "/:year/:month/:day/:slugorcontentbasename/"
 
 [[menus.main]]
 	name = '<svg id="avatar" viewBox="0 0 768 768"><title>Home</title><use href="/avatar.svg#_"/></svg>'
