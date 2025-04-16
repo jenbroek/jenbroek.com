@@ -7,12 +7,16 @@
 		z-index: 1;
 		transition: transform 0.1s;
 	}
+	.polaroid:hover::before {
+		transform: translateY(0.8ch) scale(0.9) rotate(-7.5deg);
+		transition: transform 0.1s;
+	}
 </style>
 
 <section>
 	<h2>Recent photos</h2>
 	{{ with first 3 (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
-	<ol class="noindent row nowrap" style="margin-bottom:3ch">
+	<ol class="noindent row nowrap clips" style="margin-bottom:3ch">
 		{{ range . }}
 			{{ $photos := partial `fn/vals` .Params.photos }}
 		<li>

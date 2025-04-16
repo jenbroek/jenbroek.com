@@ -1,6 +1,6 @@
 {{ with $page := .Page }}
-<article class="post-entry">
 	{{ if and (default false $.RenderPhotos) (isset .Params `photos`) }}
+<article class="post-entry-photos">
 		{{ with first 3 (partial `fn/vals` .Params.photos) | collections.Reverse }}
 			{{ $len := len . }}
 	<aside class="polaroids">
@@ -21,12 +21,15 @@
 	</aside>
 
 	<div>
-		<h{{ $.HL }}><a href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a></h{{ $.HL }}>
-		<p>{{ partial `fn/summary` $page }}</p>
-		<a href="{{ $page.RelPermalink }}" aria-label="Goto page">→</a>
+		<div>
+			<h{{ $.HL }}><a href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a></h{{ $.HL }}>
+			<p>{{ partial `fn/summary` $page }}</p>
+			<a href="{{ $page.RelPermalink }}" aria-label="Goto page">→</a>
+		</div>
 	</div>
 		{{ end }}
 	{{ else }}
+<article class="post-entry">
 	<h{{ $.HL }}><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h{{ $.HL }}>
 		{{ partialCached `post/date` .
 		    (.Date.Truncate (time.ParseDuration `24h`))
