@@ -2,8 +2,8 @@
 	--ft-sans: Bahnschrift, "DIN Alternate", "Franklin Gothic Medium", "Nimbus Sans Narrow", sans-serif-condensed, sans-serif;
 	--ft-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
 
-	--fg: light-dark(black, white);
-	--bg: light-dark(white, black);
+	--fg: light-dark(#1b191c, #faf8f8);
+	--bg: light-dark(#f5f1f1, #272428);
 
 	--cl-5: color-mix(in srgb, var(--fg) 5%, transparent);
 	--cl-10: color-mix(in srgb, var(--fg) 10%, transparent);
