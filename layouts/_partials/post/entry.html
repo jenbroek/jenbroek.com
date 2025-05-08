@@ -23,7 +23,9 @@
 	<div>
 		<div>
 			<h{{ $.HL }}><a href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a></h{{ $.HL }}>
-			<p>{{ partial `fn/summary` $page }}</p>
+			{{ with partial `fn/summary` $page }}
+			<p>{{ . }}</p>
+			{{ end }}
 			<a href="{{ $page.RelPermalink }}" aria-label="Goto page">→</a>
 		</div>
 	</div>
@@ -35,8 +37,8 @@
 		    (.Date.Truncate (time.ParseDuration `24h`))
 		    (.Lastmod.Truncate (time.ParseDuration `24h`)) }}
 
-		{{ if $.ShowSummary }}
-	<p>{{ partial `fn/summary` . }}</p>
+		{{ if $s := and $.ShowSummary (partial `fn/summary` .) }}
+	<p>{{ $s }}</p>
 	<a href="{{ .RelPermalink }}" aria-label="Goto page">→</a>
 		{{ end }}
 	{{ end }}
