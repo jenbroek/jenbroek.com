@@ -356,7 +356,7 @@ input.sr-only {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 1.25ch 3ch 0;
+		padding: 1.25ch 3ch;
 	}
 
 	> :not(aside) {
