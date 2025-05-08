@@ -445,7 +445,7 @@ input.sr-only {
 .polaroids {
 	break-inside: avoid;
 
-	figure:nth-child(1) {
+	figure:nth-child(1):not(:only-child) {
 		transform: rotate(30deg);
 	}
 	figure:nth-child(2),
