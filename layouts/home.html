@@ -14,7 +14,7 @@
 </style>
 
 <section>
-	<h2>Recent photos</h2>
+	<h2>Recent photos <a href="{{ relURL `/photos` }}" aria-label="More photos">→</a></h2>
 	{{ with first 3 (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
 	<ol class="noindent row nowrap clips" style="margin-bottom:3ch">
 		{{ range . }}
@@ -36,11 +36,10 @@
 	{{ else }}
 		{{ partialCached `wip` . }}
 	{{ end }}
-	<a href="{{ relURL `/photos` }}" aria-label="More photos">More →</a>
 </section>
 
 <section>
-	<h2>Recent posts</h2>
+	<h2>Recent posts <a href="{{ relURL `/posts` }}" aria-label="More posts">→</a></h2>
 	{{ with first 4 (where site.RegularPages `Section` `posts`).ByDate.Reverse }}
 	<ol class="noindent" style="margin-bottom:2ch">
 		{{ range . }}
@@ -50,6 +49,5 @@
 	{{ else }}
 		{{ partialCached `wip` . }}
 	{{ end }}
-	<a href="{{ relURL `/posts` }}" aria-label="More posts">More →</a>
 </section>
 {{ end }}
