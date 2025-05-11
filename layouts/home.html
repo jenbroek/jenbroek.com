@@ -1,6 +1,4 @@
 {{ define `main` }}
-{{ .Content }}
-
 <style>
 	.polaroid:hover {
 		transform: scale(1.1) rotate(7.5deg);
@@ -11,7 +9,15 @@
 		transform: translateY(0.8ch) scale(0.9) rotate(-7.5deg);
 		transition: transform 0.1s;
 	}
+
+	main > p {
+		margin: 3ch;
+		text-align: center;
+		color: var(--cl-75);
+	}
 </style>
+
+{{ .Content }}
 
 <section>
 	<h2>Recent photos <a href="{{ relURL `/photos` }}" aria-label="More photos">→</a></h2>
