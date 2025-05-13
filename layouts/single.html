@@ -20,7 +20,7 @@
 
 {{ .Content }}
 
-{{ if reflect.IsSlice .Params.photos }}
+{{ if eq (.Store.Get `photos`) nil }}
 	{{ `{{< photos >}}` | .RenderString }}
 {{ end }}
 
