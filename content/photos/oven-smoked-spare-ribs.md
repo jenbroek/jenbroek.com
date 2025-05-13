@@ -12,5 +12,4 @@ photos:
     - src: cdn:/plated-spare-ribs
 ---
 
-This weekend I made spare ribs following [America's Test Kitchen's technique](https://www.americastestkitchen.com/articles/7679-how-to-smoke-ribs-indoors) of using
-ground Lapsang souchong to generate smoke inside an oven. The results were fantastic.
+Oven-smoked spare ribs following [America's Test Kitchen's technique](https://www.americastestkitchen.com/articles/7679-how-to-smoke-ribs-indoors) of using Lapsang souchong.

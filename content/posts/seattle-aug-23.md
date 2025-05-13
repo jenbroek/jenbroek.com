@@ -5,6 +5,7 @@ tags: [travel]
 changelog:
     2024-10-13: Reordered images, highlighted places
     2025-03-23: Altered summary
+    2025-05-13: Converted from 'photo' post to blog post
 grid:
     seattle_museums:
         - a b c

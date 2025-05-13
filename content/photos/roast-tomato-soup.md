@@ -6,4 +6,4 @@ photos:
     - src: cdn:/roast-tomato-soup-grilled-cheese
 ---
 
-Had some leftover tomatoes I didn't want to waste, so I made the classic roast tomato soup and grilled cheese to start the day!
+Classic roast tomato soup and grilled cheese for breakfast.

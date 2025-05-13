@@ -11,6 +11,4 @@ photos:
       alt: View of Nijmegen's Waalbrug from Spoorbrug
 ---
 
-It was very nice out today, so I decided to grab a pastrami sandwhich and
-eat it at my favorite spot in Nijmegen thus far: De Lentloper bridge, with
-a view of the historic Waalbrug in the distance.
+Enjoying the (distant) view of the Waalbrug with a pastrami sandwhich.

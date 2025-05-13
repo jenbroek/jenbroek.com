@@ -5,6 +5,8 @@ tags: [travel]
 summary: >-
     Part #2 of my Seattle–Boston trip: visited friends,
     walked the Freedom Trail, and stuffed myself with cannoli.
+changelog:
+    2025-05-13: Converted from 'photo' post to blog post
 photos:
     - src: cdn:/USS-constitution-harbor
       alt: USS Constitution empty harbor

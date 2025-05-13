@@ -7,4 +7,4 @@ photos:
     - src: cdn:/ice-cream-cookie-cup
 ---
 
-The weather's been so nice this week, and I saw a patisserie with interesting ice cream cups.
+Cooling off with ice cream in a croissant cup and a cookie cup!
