@@ -17,29 +17,42 @@
    */}}
 {{ with .Page.Params.photos }}
 	{{ $photos := . }}
+
 	{{ if reflect.IsMap $photos }}
 		{{ $photos = index $photos ($.Get 0) }}
 	{{ end }}
 
-	{{ $grid := slice }}
-	{{ with $.Page.Params.grid }}
-		{{ $grid = . }}
-		{{ if reflect.IsMap $grid }}
-			{{ $grid = index $grid ($.Get 0) }}
+	{{ if eq (len $photos) 1 }}
+		{{ range $photos }}
+			{{ $opts := (dict
+				`Destination` .src
+				`Text` .alt
+				`Title` (.cap | markdownify)
+			)}}
+			{{ partialCached `figure` $opts (printf `%x` $opts) }}
 		{{ end }}
-	{{ end }}
+	{{ else }}
+		{{ $grid := slice }}
+
+		{{ with $.Page.Params.grid }}
+			{{ $grid = . }}
+			{{ if reflect.IsMap $grid }}
+				{{ $grid = index $grid ($.Get 0) }}
+			{{ end }}
+		{{ end }}
 <ul class="auto-grid"
     {{ with $grid }}style="grid-template:{{ trim (printf `%+q` .) `[]` | safeCSS }}"{{ end }}>
 
-	{{ range $i, $_ := $photos }}
+		{{ range $i, $_ := $photos }}
 	<li{{ if $grid }} style="grid-area: {{ printf `%c` (add 97 $i) }}"{{ end }}>
-		{{ $opts := (dict
-			`Destination` .src
-			`Text` .alt
-			`Title` (.cap | markdownify)
-		)}}
-		{{ partialCached `figure` $opts (printf `%x` $opts) }}
+			{{ $opts := (dict
+				`Destination` .src
+				`Text` .alt
+				`Title` (.cap | markdownify)
+			)}}
+			{{ partialCached `figure` $opts (printf `%x` $opts) }}
 	</li>
-	{{ end }}
+		{{ end }}
 </ul>
+	{{ end }}
 {{ end }}
