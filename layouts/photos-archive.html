@@ -35,7 +35,7 @@
 	}
 </style>
 
-{{ range (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
+{{ range (where site.RegularPages `Params.photos` `!=` nil).ByDate.Reverse }}
 	{{ range (partial `fn/vals` .Params.photos) }}
 		{{ $opts := (dict
 			`IsBlock` false

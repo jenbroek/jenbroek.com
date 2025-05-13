@@ -24,7 +24,7 @@
 		{{ partial `post/entry` (dict
 			`Page` .
 			`HL` 2
-			`RenderPhotos` (ne $.Section `tags`)
+			`RenderPhotos` (eq $.Section `photos`)
 		)}}
 	</li>
 	{{ end }}
