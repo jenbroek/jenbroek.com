@@ -1,5 +1,4 @@
 {{ define `main` }}
-{{ if eq .Section `photos` }}
 <header>
 	<style>
 		header {
@@ -11,9 +10,6 @@
 	{{ partial `_inline/page-title` . }}
 	{{ partial `pagination` .  }}
 </header>
-{{ else }}
-	{{ partial `_inline/page-title` . }}
-{{ end }}
 
 {{ .Content }}
 
