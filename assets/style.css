@@ -117,7 +117,7 @@ strong {
 	color: var(--cl-75);
 }
 
-:where(ul, ol):not(.noindent, .auto-grid, .terms, .polaroids) {
+:where(ul, ol):not(.noindent, .auto-grid, .carousel, .terms, .polaroids) {
 	line-height: 1.5;
 	li {
 		margin-top: 1ch;
@@ -205,6 +205,7 @@ input.sr-only {
 
 .noindent,
 .auto-grid,
+.carousel,
 .terms,
 .polaroids {
 	list-style: none;
@@ -425,6 +426,22 @@ input.sr-only {
 
 	+ :where(h2, h3) {
 		margin-top: 3.5ch;
+	}
+}
+
+.carousel {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	gap: 2ch;
+
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+
+	> * {
+		flex: 0 0 75%;
+		scroll-snap-align: center;
 	}
 }
 
