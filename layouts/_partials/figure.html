@@ -4,7 +4,7 @@
 <figure{{ with .Class }} class="{{ . }}"{{ end }}>
 {{ end }}
 	<img src="{{ $permalink.Src }}"
-	     alt="{{ partial `fn/img-alt` (slice .Title $permalink.Src) }}"
+	     alt="{{ partial `fn/img-alt` (slice .Text $permalink.Src) }}"
 	     {{ with $permalink.SrcSet }}
 	     srcset="{{ range $i, $v := . }}
 	             	{{- if $i }}, {{ end }}
