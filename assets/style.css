@@ -273,7 +273,7 @@ input.sr-only {
 	gap: 2ch;
 	text-transform: lowercase;
 
-	@media (width <= 640px) {
+	@media (width < 640px) {
 		flex-flow: column;
 
 		a:not(:first-child) {
