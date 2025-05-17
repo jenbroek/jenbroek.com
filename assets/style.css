@@ -369,7 +369,7 @@ input.sr-only {
 	:nth-of-type(odd) > & aside {
 		order: 1;
 
-		@media (width <= 640px) {
+		@media (width < 506px) {
 			order: unset;
 		}
 	}
