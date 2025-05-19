@@ -1,6 +1,6 @@
 <figure>
 	{{ (transform.HighlightCodeBlock .).Wrapped }}
-	{{ with index .Attributes `data-caption` }}
+	{{ with .Attributes.cap }}
 	<figcaption>{{ . | markdownify }}</figcaption>
 	{{ end }}
 </figure>

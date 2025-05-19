@@ -2,7 +2,7 @@
 	<blockquote{{ with .Attributes.cite }} cite="{{ . }}"{{ end }}>
 		{{ .Text | safeHTML }}
 	</blockquote>
-	{{ with index .Attributes `data-cite-text` }}
+	{{ with .Attributes.cap }}
 	<figcaption>
 		{{ with $.Attributes.cite }}<a href="{{ . }}">{{ end }}
 		<cite>{{ . }}</cite>
