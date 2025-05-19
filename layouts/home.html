@@ -24,12 +24,12 @@
 	{{ with first 3 (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
 	<ol class="noindent row nowrap clips" style="margin-bottom:3ch">
 		{{ range . }}
-			{{ $photos := partial `fn/vals` .Params.photos }}
 		<li>
-			<a href="{{ .RelPermalink }}" aria-label="{{ .LinkTitle }}">
+			<a href="{{ .RelPermalink }}">
+				{{ $cover := index (partial `fn/vals` .Params.photos) 0 }}
 				{{ $opts := (dict
-					`Destination` (index $photos 0).src
-					`Text` (index $photos 0).alt
+					`Destination` $cover.src
+					`Text` $cover.alt
 					`Title` .LinkTitle
 					`Class` `polaroid`
 					`SizeHints` `(width >= 65ch) 21.6ch, 33vw`

@@ -1,7 +1,7 @@
 {{ $url := urls.Parse .Destination }}
 {{ $cdnURL := cond hugo.IsDevelopment `/` site.Params.site.cdnURL }}
 
-{{ $result := dict `Src` $url `SrcSet` (slice) }}
+{{ $result := dict `Src` $url `SrcSet` (slice) `IsAbs` ($url.IsAbs) }}
 
 {{ if eq $url.Scheme `cdn` }}
 	{{ $id := strings.TrimPrefix `/` $url.Path }}

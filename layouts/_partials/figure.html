@@ -14,7 +14,7 @@
 	     sizes="{{ . }}"
 	     {{ end }}
 	     {{ end }}
-	     {{ if (urls.Parse $permalink.Src).IsAbs }}
+	     {{ if $permalink.IsAbs }}
 	     referrerpolicy="no-referrer"
 	     {{ end }}
 	     loading="lazy">

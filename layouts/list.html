@@ -7,7 +7,15 @@
 			gap: 2ch;
 		}
 	</style>
-	{{ partial `_inline/page-title` . }}
+
+	<h1 id="page-title">
+		{{ if eq .Kind `term` }}<a href="{{ .Parent.RelPermalink }}">←</a>{{ end }}
+		{{ if eq .Section `tags` }}
+			#{{ .Title }}
+		{{ else }}
+			{{ title .Title }}
+		{{ end }}
+	</h1>
 	{{ partial `pagination` .  }}
 </header>
 
@@ -28,15 +36,4 @@
 {{ else }}
 	{{ partialCached `wip` . }}
 {{ end }}
-{{ end }}
-
-{{ define `_partials/_inline/page-title` }}
-<h1 id="page-title">
-	{{ if eq .Kind `term` }}<a href="{{ .Parent.RelPermalink }}">←</a>{{ end }}
-	{{ if eq .Section `tags` }}
-		#{{ .Title }}
-	{{ else }}
-		{{ title .Title }}
-	{{ end }}
-</h1>
 {{ end }}

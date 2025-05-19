@@ -1,6 +1,7 @@
 {{ define `main` }}
 <header>
 	<h1>{{ .Title }}</h1>
+
 	{{ with partialCached `post/date` .
 	    (.Date.Truncate (time.ParseDuration `24h`))
 	    (.Lastmod.Truncate (time.ParseDuration `24h`)) }}
