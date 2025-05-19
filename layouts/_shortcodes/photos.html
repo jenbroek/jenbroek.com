@@ -43,13 +43,24 @@
 		{{ end }}
 <ul class="auto-grid"
     {{ with $grid }}style="grid-template:{{ trim (printf `%+q` .) `[]` | safeCSS }}"{{ end }}>
-
 		{{ range $i, $_ := $photos }}
-	<li{{ if $grid }} style="grid-area: {{ printf `%c` (add 97 $i) }}"{{ end }}>
+			{{ $area := printf `%c` (add 97 $i)  }}
+	<li{{ if $grid }} style="grid-area: {{ $area }}"{{ end }}>
+			{{ $hints := `` }}
+			{{ range $grid }}
+				{{ if $span := (findRE (printf `\b%v\b` $area) . | len) }}
+					{{ $cols := split . ` ` | len }}
+					{{ $space := sub 65.0 $cols }}
+					{{ $hints = printf `(width >= 65ch) %vch, %[1]vvw` (div $space $cols | mul $span) }}
+					{{ break }}
+				{{ end }}
+			{{ end }}
+
 			{{ $opts := (dict
 				`Destination` .src
 				`Text` .alt
 				`Title` (.cap | markdownify)
+				`SizeHints` $hints
 			)}}
 			{{ partialCached `figure` $opts (printf `%x` $opts) }}
 	</li>

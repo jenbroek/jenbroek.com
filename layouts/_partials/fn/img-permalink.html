@@ -7,15 +7,14 @@
 	{{ $id := strings.TrimPrefix `/` $url.Path }}
 	{{ $srcset := $result.SrcSet }}
 
-	{{ range (or .Sizes site.Params.site.imgSizes) }}
+	{{ range or .Sizes site.Params.site.imgSizes | sort }}
 		{{ $srcset = $srcset | append (dict
-		   `Src` (printf `%simg/%d/%s.webp` $cdnURL . $id)
-		   `Size` .
+			`Src` (printf `%simg/%d/%s.webp` $cdnURL . $id)
+			`Size` .
 		)}}
 	{{ end }}
 
-	{{ $largest := index $srcset (sub (len $srcset) 1) }}
-	{{ $result = dict `Src` $largest.Src `SrcSet` $srcset }}
+	{{ $result = dict `Src` (index $srcset 0).Src `SrcSet` $srcset }}
 {{ end }}
 
 {{ return $result }}

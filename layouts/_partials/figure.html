@@ -10,6 +10,9 @@
 	             	{{- if $i }}, {{ end }}
 	             	{{- $v.Src }} {{ $v.Size }}w
 	             {{- end }}"
+	     {{ with or $.SizeHints `(width >= 65ch) 65ch, 100vw` }}
+	     sizes="{{ . }}"
+	     {{ end }}
 	     {{ end }}
 	     {{ if (urls.Parse $permalink.Src).IsAbs }}
 	     referrerpolicy="no-referrer"
