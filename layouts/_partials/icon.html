@@ -1,0 +1,6 @@
+{{ $sl := cond (reflect.IsSlice .) . (slice .) }}
+{{- with index $sl 1 -}}
+<span aria-label="{{ . }}" role="img">{{ index $sl 0 }}</span>
+{{- else -}}
+<span aria-hidden="true" role="img">{{ index $sl 0 }}</span>
+{{- end -}}

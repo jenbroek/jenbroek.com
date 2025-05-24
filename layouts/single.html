@@ -28,7 +28,7 @@
 {{ with .Params.changelog }}
 <hr>
 <footer>
-	<ol aria-label="Page updates (newest first)" class="changelog">
+	<ol aria-label="Page updates" class="changelog">
 		{{ range $k, $v := . }}
 		<li>
 			<time datetime="{{ $k }}">{{ dateFormat `2006.01.02` $k }}</time>

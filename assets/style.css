@@ -35,13 +35,6 @@ html {
 	box-sizing: inherit;
 }
 
-:focus-visible {
-	outline: revert !important;
-}
-label:has(.sr-only:focus-visible) {
-	outline: auto;
-}
-
 :target {
 	scroll-margin-top: 2ch;
 }
@@ -89,7 +82,7 @@ main {
 }
 
 :where(h2, h3)[id]:hover::before {
-	content: "#";
+	content: "#" / "";
 	position: absolute;
 	margin-left: -1.5ch;
 	color: var(--cl-15);
@@ -115,6 +108,10 @@ mark {
 strong {
 	font-weight: unset;
 	color: var(--cl-75);
+}
+
+[role="img"] {
+	color: var(--fg);
 }
 
 :where(ul, ol):not(.noindent, .auto-grid, .carousel, .terms, .polaroids) {
@@ -184,7 +181,7 @@ figure:has(blockquote) figcaption {
 	line-height: 1.5;
 
 	&::before {
-		content: "— ";
+		content: "— " / "";
 	}
 }
 
@@ -193,14 +190,29 @@ hr {
 	border-style: dashed;
 }
 
-.sr-only:not(:focus):not(:active),
-input.sr-only {
+:not(input).sr-only:not(:focus):not(:active) {
 	position: absolute;
 	width: 1px;
 	height: 1px;
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
+	white-space: nowrap;
 	overflow: hidden;
+}
+input.sr-only {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+
+	label:has(> &) {
+		position: relative;
+	}
+}
+label:has(.sr-only:focus-visible) {
+	outline: auto;
 }
 
 .noindent,
@@ -235,26 +247,30 @@ input.sr-only {
 ::backdrop {
 	background: #000000c0;
 }
-#lightbox {
+#lbox {
 	cursor: zoom-out;
 	background: none;
 	border: none;
 	text-align: center;
-
-	&:focus-visible {
-		outline: none !important;
-	}
-
-	&::after {
-		content: "Press Esc or click anywhere to close";
-		color: white;
-	}
 
 	img {
 		max-height: 80vh;
 		margin: 0 auto 2ch;
 		border-radius: 0;
 	}
+
+	p, kbd {
+		font-family: var(--ft-sans);
+		color: white;
+	}
+}
+/*
+ * TODO:
+ * Add `display: contents`
+ * Blocked-by: https://caniuse.com/css-display-contents (note 2)
+ */
+.lbox-btn {
+	cursor: zoom-in;
 }
 
 #site-header {
@@ -281,7 +297,7 @@ input.sr-only {
 		}
 	}
 
-	&:has(+ * #toggle-site-nav:checked) a {
+	&:has(+ * #expand-site-nav:checked) a {
 		display: revert;
 	}
 }
@@ -298,12 +314,15 @@ input.sr-only {
 	label {
 		display: inline-block;
 		margin-left: 1ch;
-		cursor: pointer;
 		user-select: none;
 		filter: grayscale(100%);
 	}
 
-	:has(> #toggle-site-nav) {
+	input {
+		cursor: pointer;
+	}
+
+	:has(> #expand-site-nav) {
 		@media (width >= 640px) {
 			display: none;
 		}
@@ -379,10 +398,7 @@ input.sr-only {
 	display: inline-flex;
 	color: var(--cl-30);
 
-	&, dd {
-		margin: 0;
-	}
-	dd:has(~ dd) {
+	time:has(~ time) {
 		text-decoration: line-through;
 	}
 }
@@ -545,7 +561,7 @@ li:has(.post-entry) {
 	position: relative;
 	margin-left: 4ch;
 	&::before {
-		content: "⊸";
+		content: "⊸" / "";
 		position: absolute;
 		left: -2ch;
 		font-size: 2rem;

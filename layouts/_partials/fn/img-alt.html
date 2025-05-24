@@ -1,4 +1,0 @@
-{{ return (or
-	(index . 0)
-	(path.BaseName (index . 1) | strings.FirstUpper | replaceRE `[_-]` ` `)
-)}}

@@ -1,18 +1,18 @@
 <header id="site-header">
-	<nav id="site-nav">
+	<nav id="site-nav" aria-label="Site">
 		{{ range site.Menus.main }}
 		<a href="{{ .URL }}">{{ .Name | safeHTML }}</a>
 		{{ end }}
 	</nav>
 
 	<div id="site-nav-btns">
-		<label aria-label="Toggle site navigation">
-			⇄
-			<input type="checkbox" id="toggle-site-nav" class="sr-only">
+		<label aria-label="Expand site navigation">
+			{{ partialCached `icon` `⇄` `⇄` }}
+			<input type="checkbox" id="expand-site-nav" class="sr-only">
 		</label>
 
-		<label aria-label="Inverted colors mode">
-			💡
+		<label aria-label="Invert colors">
+			{{ partialCached `icon` `💡` `💡` }}
 			<input type="checkbox" id="invert-colors" class="sr-only">
 		</label>
 	</div>

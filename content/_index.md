@@ -1,5 +1,9 @@
-o/  
+---
+title: Jens's Blog
+---
+{{< icon "o/" "Person waving" >}}
+
 My name's Jens, software engineer by trade.  
-I like cooking 🍳, minimalist travel 💼, and tea! 🍵
+I like cooking {{< icon "🍳" >}}, minimalist travel {{< icon "💼" >}}, and tea! {{< icon "🍵" >}}
 
 Occasionally I'll make ASCII art or write a blog post.

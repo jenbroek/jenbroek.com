@@ -15,7 +15,7 @@
 	{{ range partial `fn/vals` . }}
 		{{ $permalink := partial `fn/img-permalink` (dict `Destination` .src) }}
 <meta property="og:image" content="{{ $permalink.Src }}">
-<meta property="og:image:alt" content="{{ partial `fn/img-alt` (slice .alt $permalink.Src) }}">
+<meta property="og:image:alt" content="{{ .alt }}">
 	{{ end }}
 {{ end }}
 

@@ -27,7 +27,9 @@
 			{{ with partial `fn/summary` $page }}
 			<p>{{ . }}</p>
 			{{ end }}
-			<a href="{{ $page.RelPermalink }}" aria-label="Goto page">→</a>
+			<a href="{{ $page.RelPermalink }}" aria-label="Read more about {{ $page.LinkTitle }}">
+				{{ partialCached `icon` `→` `→` }}
+			</a>
 		</div>
 	</div>
 		{{ end }}
@@ -40,7 +42,9 @@
 
 		{{ if $s := and $.ShowSummary (partial `fn/summary` .) }}
 	<p>{{ $s }}</p>
-	<a href="{{ .RelPermalink }}" aria-label="Goto page">→</a>
+	<a href="{{ .RelPermalink }}" aria-label="Read more about {{ $page.LinkTitle }}">
+		{{ partialCached `icon` `→` `→` }}
+	</a>
 		{{ end }}
 	{{ end }}
 </article>

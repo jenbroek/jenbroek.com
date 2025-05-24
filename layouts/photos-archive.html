@@ -1,7 +1,10 @@
 {{ define `site-header` }}
 <header id="site-header">
-	<nav id="site-nav">
-		<a href="{{ .Parent.RelPermalink }}">← {{ .Parent.LinkTitle }}</a>
+	<nav id="site-nav" aria-label="Site">
+		<a href="{{ .Parent.RelPermalink }}">
+			{{ partialCached `icon` (slice `←` `Back to`) `← Back to` }}
+			{{ .Parent.LinkTitle }}
+		</a>
 	</nav>
 </header>
 {{ end }}
@@ -25,7 +28,7 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(35vmin, 1fr));
 		gap: 2.5ch;
-		text-align: center;
+		place-items: center;
 
 		> img {
 			aspect-ratio: 1;

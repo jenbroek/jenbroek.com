@@ -10,26 +10,34 @@
 		transition: transform 0.1s;
 	}
 
-	main > p {
+	main > header {
 		margin: 3ch;
 		text-align: center;
-		color: var(--cl-75);
 	}
 </style>
 
-{{ .Content }}
+<header>
+	<h1 class="sr-only">{{ .Title }}</h1>
+	{{ .Content }}
+</header>
 
 <section>
-	<h2>Recent photos <a href="{{ relURL `/photos` }}" aria-label="More photos">→</a></h2>
+	<h2 id="recent-photos">
+		Recent photos
+		<a href="{{ relURL `/photos` }}" aria-label="More recent photos">
+			{{ partialCached `icon` `→` `→` }}
+		</a>
+	</h2>
+
 	{{ with first 3 (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
-	<ol class="noindent row nowrap clips" style="margin-bottom:3ch">
+	<ol aria-labelledby="recent-photos" class="noindent row nowrap clips" style="margin-bottom:3ch">
 		{{ range . }}
 		<li>
-			<a href="{{ .RelPermalink }}">
+			<a href="{{ .RelPermalink }}" aria-label="{{ .LinkTitle }}">
 				{{ $cover := index (partial `fn/vals` .Params.photos) 0 }}
 				{{ $opts := (dict
 					`Destination` $cover.src
-					`Text` $cover.alt
+					`Text` ``
 					`Title` .LinkTitle
 					`Class` `polaroid`
 					`SizeHints` `(width >= 65ch) 21.6ch, 33vw`
@@ -45,9 +53,15 @@
 </section>
 
 <section>
-	<h2>Recent posts <a href="{{ relURL `/posts` }}" aria-label="More posts">→</a></h2>
+	<h2 id="recent-posts">
+		Recent posts
+		<a href="{{ relURL `/posts` }}" aria-label="More recent posts">
+			{{ partialCached `icon` `→` `→` }}
+		</a>
+	</h2>
+
 	{{ with first 4 (where site.RegularPages `Section` `posts`).ByDate.Reverse }}
-	<ol class="noindent" style="margin-bottom:2ch">
+	<ol aria-labelledby="recent-posts" class="noindent" style="margin-bottom:2ch">
 		{{ range . }}
 		<li>{{ partial `post/entry` (dict `Page` . `HL` 3) }}</li>
 		{{ end }}
