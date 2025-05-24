@@ -1,12 +1,16 @@
 {{ if not .Date.IsZero }}
 	{{ $a := .Date.Truncate (time.ParseDuration `24h`) }}
 	{{ $b := .Lastmod.Truncate (time.ParseDuration `24h`) }}
-<dl class="post-dates row">
-	<dt class="sr-only">Published</dt>
-	<dd><time datetime="{{ $a.Format `2006-01-02` }}">{{ $a.Format `2006.01.02` }}</time></dd>
+<div class="post-dates row">
+	<time datetime="{{ $a.Format `2006-01-02` }}">
+		<span class="sr-only">Published {{ $a.Format `2006.01.02` }}</span>
+		<span aria-hidden="true">{{ $a.Format `2006.01.02` }}</span>
+	</time>
 	{{ if $b.After $a }}
-	<dt class="sr-only">Last modified</dt>
-	<dd><time datetime="{{ $b.Format `2006-01-02` }}">{{ $b.Format `2006.01.02` }}</time></dd>
+	<time datetime="{{ $b.Format `2006-01-02` }}">
+		<span class="sr-only">Last modified {{ $b.Format `2006.01.02` }}</span>
+		<span aria-hidden="true">{{ $b.Format `2006.01.02` }}</span>
+	</time>
 	{{ end }}
-</dl>
+</div>
 {{ end }}

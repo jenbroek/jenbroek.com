@@ -31,7 +31,7 @@ pagerSize = 4
 	photos = "/:year/:month/:day/:slugorcontentbasename/"
 
 [[menus.main]]
-	name = '<svg id="avatar" viewBox="0 0 768 768"><title>Home</title><use href="/avatar.svg#_"/></svg>'
+	name = '<svg id="avatar" viewBox="0 0 768 768" role="img"><title>Home</title><use href="/avatar.svg#_"/></svg>'
 	pageRef = "/"
 	weight = 1
 [[menus.main]]

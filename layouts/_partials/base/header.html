@@ -6,13 +6,13 @@
 	</nav>
 
 	<div id="site-nav-btns">
-		<label aria-label="Toggle site navigation">
-			⇄
+		<label aria-label="Show site navigation">
+			{{ partialCached `icon` `⇄` `⇄` }}
 			<input type="checkbox" id="toggle-site-nav" class="sr-only">
 		</label>
 
-		<label aria-label="Inverted colors mode">
-			💡
+		<label aria-label="Invert colors">
+			{{ partialCached `icon` `💡` `💡` }}
 			<input type="checkbox" id="invert-colors" class="sr-only">
 		</label>
 	</div>

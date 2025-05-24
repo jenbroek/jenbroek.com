@@ -24,7 +24,9 @@ photos:
           alt: View from Third Burroughs Mountain
     seattle_museums:
         - src: cdn:/chihuly-sculpture-1
+          alt: Blue Chihuly glass sculpture in a dimly lit room
         - src: cdn:/chihuly-sculpture-2
+          alt: Orange Chihuly glass sculpture in a sunroom
         - src: cdn:/seattle-flight-museum-plane
           alt: Seattle Museum of Flight plane
 ---

@@ -1,7 +1,10 @@
 {{ define `site-header` }}
 <header id="site-header">
 	<nav id="site-nav">
-		<a href="{{ .Parent.RelPermalink }}">← {{ .Parent.LinkTitle }}</a>
+		<a href="{{ .Parent.RelPermalink }}">
+			{{ partialCached `icon` (slice `←` `Back to`) `← Back to` }}
+			{{ .Parent.LinkTitle }}
+		</a>
 	</nav>
 </header>
 {{ end }}
