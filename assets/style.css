@@ -81,7 +81,7 @@ main {
 	}
 }
 
-:where(h2, h3)[id]:hover::before {
+:where(h2, h3)[id]:has(a[href^="#"]):hover::before {
 	content: "#" / "";
 	position: absolute;
 	margin-left: -1.5ch;
