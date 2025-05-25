@@ -448,7 +448,8 @@ label:has(.sr-only:focus-visible) {
 .carousel {
 	position: relative;
 
-	display: flex;
+	display: grid;
+	grid: auto / auto-flow 75%;
 	align-items: center;
 	gap: 2ch;
 
@@ -456,8 +457,11 @@ label:has(.sr-only:focus-visible) {
 	scroll-snap-type: x mandatory;
 
 	> * {
-		flex: 0 0 75%;
 		scroll-snap-align: center;
+	}
+
+	@media print {
+		grid: auto-flow / 1fr 1fr;
 	}
 }
 
