@@ -40,7 +40,7 @@ a ferry to the very quaint **Whidbey Island**. I half-jokingly remarked that I w
 
 {{< photos "seattle_arrival" >}}
 
-# Hiking
+## Hiking
 {{< photos "seattle_hike" >}}
 
 The highlight for me was hiking to the **Mt. Fremont Fire Lookout** and **Third Burroughs Mountain**.
@@ -49,7 +49,7 @@ power for the trip back, but ~~aggressive~~ regenerative breaking took care of t
 the fresh air rushing by, the wildlife (admittedly mostly squirrels)… stunning. Pretty sure if I
 lived nearby, I'd be there as often as possible!
 
-# Museums
+## Museums
 {{< photos "seattle_museums" >}}
 
 After that I saw my friend off as he traveled by train to **Boston**, and I stayed about a week

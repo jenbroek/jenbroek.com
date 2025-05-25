@@ -19,16 +19,16 @@ For Christmas (2024), I tried my hand at the infamous Beef Wellington. To my sur
 
 {{< photos >}}
 
-# Traditional
+## Traditional
 Even though the lattice didn't turn out as well as I'd have liked, and I used a little too much duxelles, it was still delicious.
 I made the lattice by hand but for next Christmas I'm buying a lattice roller.
 
-# Pork
+## Pork
 I couldn't get my hands on filet mignon on New Year's Eve, so I used pork tenderloin. It was good, but
 would've benefitted from grainy mustard instead, and some apple mixed into the duxelles I think.
 Defenitely a viable alternative for small microwave ovens!
 
-# Chuck
+## Chuck
 I also attempted using chuck tender. It was the best looking yet.
 Though the meat was, predictably, a bit tougher and dry.
 I think a wet brine next time will do the trick.
