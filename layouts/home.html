@@ -30,7 +30,7 @@
 	</h2>
 
 	{{ with first 3 (site.GetPage `/photos`).RegularPages.ByDate.Reverse }}
-	<ol aria-labelledby="recent-photos" class="noindent row nowrap clips" style="margin-bottom:3ch">
+	<ol aria-labelledby="recent-photos" class="polaroid-line" style="margin-bottom:3ch">
 		{{ range . }}
 		<li>
 			<a href="{{ .RelPermalink }}" aria-label="{{ .LinkTitle }}">

@@ -1,51 +1,35 @@
-{{ with $page := .Page }}
-	{{ if and (default false $.RenderPhotos) (isset .Params `photos`) }}
+{{ $renderPhotos := and (default false .RenderPhotos) (isset .Page.Params `photos`) }}
+{{ if $renderPhotos }}
 <article class="post-entry-photos">
-		{{ with first 3 (partial `fn/vals` .Params.photos) | collections.Reverse }}
-			{{ $len := len . }}
-	<aside class="polaroids">
-			{{ range $i, $_ := . }}
-				{{ $opts := (dict
-					`Destination` .src
-					`Text` .alt
-					`Title` (cond (eq $i (sub $len 1))
-						(partialCached `post/date` $page
-						    ($page.Date.Truncate (time.ParseDuration `24h`))
-						    ($page.Lastmod.Truncate (time.ParseDuration `24h`)))
-						``
-					)
-					`Class` `polaroid`
-					`SizeHints` `40mm`
-				)}}
-				{{ partial `figure` $opts }}
-			{{ end }}
+	{{ with first 3 (partial `fn/vals` .Page.Params.photos) | collections.Reverse }}
+	<aside class="polaroid-stack">
+		{{ range . }}
+			{{ $opts := (dict
+				`Destination` .src
+				`Text` .alt
+				`Class` `polaroid`
+				`SizeHints` `40mm`
+			)}}
+			{{ partial `figure` $opts }}
+		{{ end }}
 	</aside>
+	{{ end }}
 
 	<div>
 		<div>
-			<h{{ $.HL }}><a href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a></h{{ $.HL }}>
-			{{ with partial `fn/summary` $page }}
-			<p>{{ . }}</p>
-			{{ end }}
-			<a href="{{ $page.RelPermalink }}" aria-label="Read more about {{ $page.LinkTitle }}">
-				{{ partialCached `icon` `→` `→` }}
-			</a>
+{{ else }}
+<article class="post-entry">
+{{ end }}
+	<h{{ .HL }}><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a></h{{ .HL }}>
+	{{ partialCached `post/date` .Page
+	    (.Page.Date.Truncate (time.ParseDuration `24h`))
+	    (.Page.Lastmod.Truncate (time.ParseDuration `24h`)) }}
+
+	{{ if $s := and (default $renderPhotos .ShowSummary) (partial `fn/summary` .Page) }}
+	<p>{{ $s }}</p>
+	{{ end }}
+{{ if $renderPhotos }}
 		</div>
 	</div>
-		{{ end }}
-	{{ else }}
-<article class="post-entry">
-	<h{{ $.HL }}><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h{{ $.HL }}>
-		{{ partialCached `post/date` .
-		    (.Date.Truncate (time.ParseDuration `24h`))
-		    (.Lastmod.Truncate (time.ParseDuration `24h`)) }}
-
-		{{ if $s := and $.ShowSummary (partial `fn/summary` .) }}
-	<p>{{ $s }}</p>
-	<a href="{{ .RelPermalink }}" aria-label="Read more about {{ $page.LinkTitle }}">
-		{{ partialCached `icon` `→` `→` }}
-	</a>
-		{{ end }}
-	{{ end }}
-</article>
 {{ end }}
+</article>

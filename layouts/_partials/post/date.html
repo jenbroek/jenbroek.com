@@ -1,7 +1,7 @@
 {{ if not .Date.IsZero }}
 	{{ $a := .Date.Truncate (time.ParseDuration `24h`) }}
 	{{ $b := .Lastmod.Truncate (time.ParseDuration `24h`) }}
-<div class="post-dates row">
+<div class="post-dates">
 	<time datetime="{{ $a.Format `2006-01-02` }}">
 		<span class="sr-only">Published {{ $a.Format `2006.01.02` }}</span>
 		<span aria-hidden="true">{{ $a.Format `2006.01.02` }}</span>
