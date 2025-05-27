@@ -21,8 +21,8 @@
 
 {{ .Content }}
 
-{{ if eq (.Store.Get `photos`) nil }}
-	{{ `{{< photos >}}` | .RenderString }}
+{{ if not (.HasShortcode `photos`) }}
+	{{ partialCached `photos` (dict `Page` .) . nil }}
 {{ end }}
 
 {{ with .Params.changelog }}

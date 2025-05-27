@@ -1,0 +1,69 @@
+{{/*
+   * TODO:
+   * Replace with CSS using `attr()` and `counter()`:
+   *
+   * ```css
+   * [data-grid] {
+   * 	counter-reset: i;
+   * 	grid-template-areas: attr(data-grid);
+   * 	& > li {
+   * 		counter-increment: i;
+   * 		grid-area: ident(counter(i, lower-alpha));
+   * 	}
+   * }
+   * ```
+   *
+   * Blocked-by: https://github.com/w3c/csswg-drafts/issues/9141
+   */}}
+{{ with .Page.Params.photos }}
+	{{ $photos := . }}
+
+	{{ if reflect.IsMap $photos }}
+		{{ $photos = index $photos $.Key }}
+	{{ end }}
+
+	{{ if eq (len $photos) 1 }}
+		{{ range $photos }}
+			{{ $opts := (dict
+				`Destination` .src
+				`Text` .alt
+				`Title` (.cap | markdownify)
+			)}}
+			{{ partialCached `figure` $opts $opts }}
+		{{ end }}
+	{{ else }}
+		{{ $grid := slice }}
+
+		{{ with $.Page.Params.grid }}
+			{{ $grid = . }}
+			{{ if reflect.IsMap $grid }}
+				{{ $grid = index $grid $.Key }}
+			{{ end }}
+		{{ end }}
+<ul class="auto-grid"
+    {{ with $grid }}style="grid-template:{{ trim (printf `%+q` .) `[]` | safeCSS }}"{{ end }}>
+		{{ range $i, $_ := $photos }}
+			{{ $area := printf `%c` (add 97 $i)  }}
+	<li{{ if $grid }} style="grid-area: {{ $area }}"{{ end }}>
+			{{ $hints := `` }}
+			{{ range $grid }}
+				{{ if $span := (findRE (printf `\b%v\b` $area) . | len) }}
+					{{ $cols := split . ` ` | len }}
+					{{ $space := sub 65.0 $cols }}
+					{{ $hints = printf `(width >= 65ch) %vch, %[1]vvw` (div $space $cols | mul $span) }}
+					{{ break }}
+				{{ end }}
+			{{ end }}
+
+			{{ $opts := (dict
+				`Destination` .src
+				`Text` .alt
+				`Title` (.cap | markdownify)
+				`SizeHints` $hints
+			)}}
+			{{ partialCached `figure` $opts $opts }}
+	</li>
+		{{ end }}
+</ul>
+	{{ end }}
+{{ end }}
