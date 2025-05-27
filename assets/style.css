@@ -257,18 +257,10 @@ label:has(.sr-only:focus-visible) {
 		border-radius: 0;
 	}
 
-	p, kbd {
-		font-family: var(--ft-sans);
+	&::after {
+		content: "Press Escape or click anywhere to close";
 		color: white;
 	}
-}
-/*
- * TODO:
- * Add `display: contents`
- * Blocked-by: https://caniuse.com/css-display-contents (note 2)
- */
-.lbox-btn {
-	cursor: zoom-in;
 }
 
 #site-header {
