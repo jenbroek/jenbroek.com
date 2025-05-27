@@ -30,7 +30,7 @@
 				`Text` .alt
 				`Title` (.cap | markdownify)
 			)}}
-			{{ partialCached `figure` $opts (printf `%x` $opts) }}
+			{{ partialCached `figure` $opts $opts }}
 		{{ end }}
 	{{ else }}
 		{{ $grid := slice }}
@@ -62,7 +62,7 @@
 				`Title` (.cap | markdownify)
 				`SizeHints` $hints
 			)}}
-			{{ partialCached `figure` $opts (printf `%x` $opts) }}
+			{{ partialCached `figure` $opts $opts }}
 	</li>
 		{{ end }}
 </ul>

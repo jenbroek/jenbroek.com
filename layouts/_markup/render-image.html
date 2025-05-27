@@ -3,4 +3,4 @@
 	`Text` .Text
 	`Title` (.Title | markdownify)
 )}}
-{{ partialCached `figure` $opts (printf `%x` $opts) }}
+{{ partialCached `figure` $opts $opts }}

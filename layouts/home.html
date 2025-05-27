@@ -37,12 +37,11 @@
 				{{ $cover := index (partial `fn/vals` .Params.photos) 0 }}
 				{{ $opts := (dict
 					`Destination` $cover.src
-					`Text` ``
 					`Title` .LinkTitle
 					`Class` `polaroid`
 					`SizeHints` `(width >= 65ch) 21.6ch, 33vw`
 				)}}
-				{{ partial `figure` $opts }}
+				{{ partialCached `figure` $opts $opts }}
 			</a>
 		</li>
 		{{ end }}
