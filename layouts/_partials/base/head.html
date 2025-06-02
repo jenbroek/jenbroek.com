@@ -1,25 +1,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{ with (or
-	(.Description | plainify | strings.TrimSpace)
-	(partial `fn/summary` .)
-	(site.Params.site.description | plainify | strings.TrimSpace)
-)}}
-<meta name="description" content="{{ . | htmlEscape }}">
-{{ end }}
 {{ if .Params.noIndex }}
 <meta name="robots" content="noindex">
 {{ end }}
 
-{{ with .Params.photos }}
-	{{ range partial `fn/vals` . }}
-		{{ $permalink := partial `fn/img-permalink` (dict `Destination` .src) }}
-<meta property="og:image" content="{{ $permalink.Src }}">
-<meta property="og:image:alt" content="{{ .alt }}">
-	{{ end }}
-{{ end }}
+{{ partial `base/seo` . }}
 
-<title>{{ partial `fn/title` . }}</title>
 <link rel="icon" href="{{ relURL `/favicon.svg` }}">
 
 {{ with resources.Get `style.css` | minify | fingerprint `sha512` }}

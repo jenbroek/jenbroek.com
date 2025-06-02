@@ -1,4 +1,11 @@
-{{ return (or
-	(.Params.summary | plainify | strings.TrimSpace)
-	(index (split .Content `</p>`) 0 | plainify | htmlUnescape | strings.TrimSpace)
-)}}
+{{ $summary := .Params.summary | plainify | strings.TrimSpace }}
+{{ if not $summary }}
+	{{ if and (eq .Kind `term`) }}
+		{{ $summary = printf `Overview of pages under '%s%s'` (cond (eq .Section `tags`) `#` ``) .Title }}
+	{{ else if in (slice `section` `taxonomy`) .Kind }}
+		{{ $summary = printf `Overview of pages under '%s'` (lower .Title) }}
+	{{ else }}
+		{{ $summary = index (split .Content `</p>`) 0 | plainify | htmlUnescape | strings.TrimSpace }}
+	{{ end }}
+{{ end }}
+{{ return $summary }}

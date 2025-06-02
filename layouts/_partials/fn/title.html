@@ -1,8 +1,24 @@
-{{ $title := site.Title }}
-{{ if not .IsHome }}
-	{{ $title = printf `%s – %s` (lower .Title) $title }}
-	{{ if and (eq .Kind `term`) (eq .Section `tags`) }}
-		{{ $title = printf `#%s` $title }}
+{{ $title := (cond .IsOpenGraph
+	.Page.Title
+	(printf `%s – %s` (lower .Page.Title) site.Title)
+)}}
+{{ with .Page }}
+	{{ if .IsHome }}
+		{{ $title = (cond $.IsOpenGraph
+			.Title
+			site.Title
+		)}}
+	{{ else if eq .Kind `term` }}
+		{{ $prefix := cond (eq .Section `tags`) `#` `` }}
+		{{ $title = (cond $.IsOpenGraph
+			(printf `%s%s` $prefix .Title)
+			(printf `%s%s – %s` $prefix .Title site.Title)
+		)}}
+	{{ else if in (slice `section` `taxonomy`) .Kind }}
+		{{ $title = (cond $.IsOpenGraph
+			(title .Title)
+			(printf `%s – %s` (lower .Title) site.Title)
+		)}}
 	{{ end }}
 {{ end }}
 {{ return $title }}
