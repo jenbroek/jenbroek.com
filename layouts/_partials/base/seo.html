@@ -1,21 +1,15 @@
-<title>{{ partial `fn/title` (dict `Page` . `IsOpenGraph` false) }}</title>
+<title>{{ partial `fn/title` . }}</title>
 {{ with (or
 	(.Description | plainify | strings.TrimSpace)
 	(partial `fn/summary` .)
 	(site.Params.site.description | plainify | strings.TrimSpace)
 )}}
 <meta name="description" content="{{ . }}">
-<meta property="og:description" content="{{ . }}">
 {{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
 
 <meta property="og:site_name" content="{{ site.Title }}">
-<meta property="og:title" content="{{ partial `fn/title` (dict `Page` . `IsOpenGraph` true) }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-
-{{ with .Permalink }}
-<link rel="canonical" href="{{ . }}">
-<meta property="og:url" content="{{ . }}">
-{{ end }}
 
 {{ with .Params.photos }}
 	{{ range partial `fn/vals` . }}

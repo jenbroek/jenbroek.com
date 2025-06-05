@@ -1,7 +1,8 @@
 {{ $summary := .Params.summary | plainify | strings.TrimSpace }}
 {{ if not $summary }}
 	{{ if and (eq .Kind `term`) }}
-		{{ $summary = printf `Overview of pages under '%s%s'` (cond (eq .Section `tags`) `#` ``) .Title }}
+		{{ $prefix := cond (eq .Section `tags`) `#` `` }}
+		{{ $summary = printf `Overview of pages under '%s%s'` $prefix .Title }}
 	{{ else if in (slice `section` `taxonomy`) .Kind }}
 		{{ $summary = printf `Overview of pages under '%s'` (lower .Title) }}
 	{{ else }}
