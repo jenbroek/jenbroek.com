@@ -1,2 +1,0 @@
-/*
-	Content-Security-Policy: default-src 'self' https://cdn.jenbroek.com; style-src 'self' 'unsafe-inline'; img-src *; media-src *; frame-ancestors 'none'
