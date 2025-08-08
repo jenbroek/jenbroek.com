@@ -39,14 +39,24 @@
 
 {{ .Content }}
 
-{{ with .Params.changelog }}
+{{ with .GitInfo }}
+	{{ range (append . .Ancestors) }}
+		{{ if hasPrefix .Subject `edit post` }}
+			{{ $.Store.SetInMap `changelog`
+			    (.AuthorDate.Format `2006-01-02`)
+			    (replaceRE `edit posts?:.*?:` `` .Subject | humanize)
+			}}
+		{{ end }}
+	{{ end }}
+{{ end }}
+{{ with .Store.Get `changelog` }}
 <hr>
 <footer>
 	<ol aria-label="Page updates" class="changelog">
 		{{ range $k, $v := . }}
 		<li>
 			<time datetime="{{ $k }}">{{ dateFormat `2006.01.02` $k }}</time>
-			<p class="noindent">{{ $v | markdownify }}</p>
+			<p class="noindent">{{ $v }}</p>
 		</li>
 		{{ end }}
 	</ol>
