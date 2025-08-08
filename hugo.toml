@@ -15,7 +15,7 @@ publishResources = false
 [params.site]
 	description = "Jens is a software engineer with a passion for keeping it simple, and learning about software design."
 	cdnURL = "https://cdn.jenbroek.com/"
-	imgSizes = [250, 500, 1000, 2000]
+	imgSizes = [350, 700, 1400]
 [params.pagination]
 	slots = 3
 

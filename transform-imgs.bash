@@ -6,11 +6,18 @@ process() {
 	p=$1
 	f=${p##*/}
 	shift
+
 	for w in $(sed -nr '/imgSizes/s/[^0-9]+/ /gp' hugo.toml); do
 		mkdir -p $dest/$w
-		magick.exe -quiet "$p" -resize $w "$dest/$w/$f"
-		"$@" "$dest/$w/$f"
-		magick.exe -quiet -quality 90 "$dest/$w/$f" "$dest/$w/${f%.*}.webp"
+
+		case $f in
+			ascii-art*) flags='-interpolate Integer -filter point' ;;
+		esac
+
+		magick.exe -quiet "$p" $flags -resize $w "$dest/$w/$f"
+		if "$@" "$dest/$w/$f"; then
+			magick.exe -quiet $flags -quality 90 "$dest/$w/$f" "$dest/$w/${f%.*}.webp"
+		fi
 	done
 }
 
@@ -25,6 +32,9 @@ for f in "${@:?no args given}"; do
 			;&
 		image/jpeg)
 			process "$f" jpegoptim -qs &
+			;;
+		image/webp)
+			process "$f" false &
 			;;
 		*)
 			echo unrecognized type >&2

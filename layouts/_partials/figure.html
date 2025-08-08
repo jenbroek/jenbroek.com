@@ -10,7 +10,7 @@
 	             	{{- if $i }}, {{ end }}
 	             	{{- $v.Src }} {{ $v.Size }}w
 	             {{- end }}"
-	     {{ with or $.SizeHints `(width >= 65ch) 65ch, 100vw` }}
+	     {{ with or $.SizeHints `auto` }}
 	     sizes="{{ . }}"
 	     {{ end }}
 	     {{ end }}

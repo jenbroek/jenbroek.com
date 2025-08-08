@@ -49,8 +49,7 @@
 			{{ range $grid }}
 				{{ if $span := (findRE (printf `\b%v\b` $area) . | len) }}
 					{{ $cols := split . ` ` | len }}
-					{{ $space := sub 65.0 $cols }}
-					{{ $hints = printf `(width >= 65ch) %vch, %[1]vvw` (div $space $cols | mul $span) }}
+					{{ $hints = printf `(width >= 60ch) %vch, %[1]vvw` (div 60.0 $cols | mul $span) }}
 					{{ break }}
 				{{ end }}
 			{{ end }}
