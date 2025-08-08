@@ -1,11 +1,25 @@
 {{ define `main` }}
 <header>
-	<h1>{{ .Title }}</h1>
+	<div class="row nowrap" style="justify-content:space-between;align-items:center">
+		<h1>{{ .Title }}</h1>
+		<nav class="terms clr nowrap" aria-label="Posts" style="font-size:0.75em">
+			{{ with .PrevInSection }}
+			<a href="{{ .RelPermalink }}" aria-label="Previous post" title="Previous post">
+				{{ partialCached `icon` `←` `←` }}
+			</a>
+			{{ end }}
+			{{ with .NextInSection }}
+			<a href="{{ .RelPermalink }}" aria-label="Next post" title="Next post">
+				{{ partialCached `icon` `→` `→` }}
+			</a>
+			{{ end }}
+		</nav>
+	</div>
 
 	{{ with partialCached `post/date` .
 	    (.Date.Truncate (time.ParseDuration `24h`))
 	    (.Lastmod.Truncate (time.ParseDuration `24h`)) }}
-	<div class="row">
+	<div class="row" style="margin-bottom:3ch">
 		{{ . }}
 
 		{{ with $.GetTerms `tags` }}
@@ -19,11 +33,11 @@
 	{{ end }}
 </header>
 
-{{ .Content }}
-
 {{ if not (.HasShortcode `photos`) }}
 	{{ partialCached `photos` (dict `Page` .) . nil }}
 {{ end }}
+
+{{ .Content }}
 
 {{ with .Params.changelog }}
 <hr>

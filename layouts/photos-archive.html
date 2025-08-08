@@ -14,17 +14,17 @@
 	:root {
 		color-scheme: dark;
 	}
-	body {
-		max-width: unset;
-	}
 	#site-header {
 		justify-content: center;
 	}
 	#site-nav {
-		margin: -3ch 0 4ch; /* -#site-header margin-top, body padding-top */
+		margin-bottom: 4ch; /* body padding-top */
 		text-transform: unset;
 	}
 	main {
+		justify-self: stretch;
+		max-width: unset;
+
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(35vmin, 1fr));
 		gap: 2.5ch;
