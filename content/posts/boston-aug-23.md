@@ -8,11 +8,11 @@ summary: >-
 changelog:
     2025-05-13: Converted from 'photo' post to blog post
 photos:
-    - src: cdn:/USS-constitution-harbor
+    - src: cdn:USS-constitution-harbor
       alt: USS Constitution empty harbor
-    - src: cdn:/north-end-yellow-car
+    - src: cdn:north-end-yellow-car
       alt: Yellow car at Boston's North End
-    - src: cdn:/modern-pastry-cannoli
+    - src: cdn:modern-pastry-cannoli
       alt: Closed box of Modern Pastry's cannoli
 ---
 

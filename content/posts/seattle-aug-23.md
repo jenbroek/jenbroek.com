@@ -11,23 +11,23 @@ grid:
         - a b c
 photos:
     seattle_arrival:
-        - src: cdn:/space-needle
+        - src: cdn:space-needle
           alt: Space Needle from below
-        - src: cdn:/pike-place-market
+        - src: cdn:pike-place-market
           alt: Pike Place Market
-        - src: cdn:/seattle-skyline
+        - src: cdn:seattle-skyline
           alt: Skyline view of downtown Seattle from Kerry Park
     seattle_hike:
-        - src: cdn:/mt-rainier-sunrise-area
+        - src: cdn:mt-rainier-sunrise-area
           alt: Sunrise Area looking upon Mt. Rainier
-        - src: cdn:/third-burroughs-mountain-view
+        - src: cdn:third-burroughs-mountain-view
           alt: View from Third Burroughs Mountain
     seattle_museums:
-        - src: cdn:/chihuly-sculpture-1
+        - src: cdn:chihuly-sculpture-1
           alt: Blue Chihuly glass sculpture in a dimly lit room
-        - src: cdn:/chihuly-sculpture-2
+        - src: cdn:chihuly-sculpture-2
           alt: Orange Chihuly glass sculpture in a sunroom
-        - src: cdn:/seattle-flight-museum-plane
+        - src: cdn:seattle-flight-museum-plane
           alt: Seattle Museum of Flight plane
 ---
 

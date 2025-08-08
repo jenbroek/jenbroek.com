@@ -6,13 +6,13 @@ grid:
     - a b
     - c d
 photos:
-    - src: cdn:/marinated-spare-ribs
+    - src: cdn:marinated-spare-ribs
       alt: Spare ribs preppared for marinating overnight
-    - src: cdn:/smoked-spare-ribs
+    - src: cdn:smoked-spare-ribs
       alt: Freshly smoked spare ribs on oven tray
-    - src: cdn:/stacked-spare-ribs
+    - src: cdn:stacked-spare-ribs
       alt: Freshly smoked spare ribs stacked in casserole dish
-    - src: cdn:/plated-spare-ribs
+    - src: cdn:plated-spare-ribs
       alt: Spare ribs plated with chives, cheese, and sour creme–filled baked potato
 ---
 

@@ -7,11 +7,11 @@ changelog:
 grid:
     - a b c
 photos:
-    - src: cdn:/beef-wellington-xmas-2024
+    - src: cdn:beef-wellington-xmas-2024
       alt: Traditional Beef Wellington
-    - src: cdn:/beef-wellington-nye-2024
+    - src: cdn:beef-wellington-nye-2024
       alt: Pork Tenderloin Beef Wellington
-    - src: cdn:/beef-wellington-chuck-tender
+    - src: cdn:beef-wellington-chuck-tender
       alt: Chuck Tender Beef Wellington
 ---
 

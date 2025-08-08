@@ -4,7 +4,7 @@
 {{ $result := dict `Src` $url `SrcSet` (slice) `IsAbs` ($url.IsAbs) }}
 
 {{ if eq $url.Scheme `cdn` }}
-	{{ $id := strings.TrimPrefix `/` $url.Path }}
+	{{ $id := $url.Opaque }}
 	{{ $srcset := $result.SrcSet }}
 
 	{{ range or .Sizes site.Params.site.imgSizes | sort }}
