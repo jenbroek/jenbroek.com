@@ -26,9 +26,9 @@ I made the lattice by hand but for next Christmas I'm buying a lattice roller.
 ## Pork
 I couldn't get my hands on filet mignon on New Year's Eve, so I used pork tenderloin. It was good, but
 would've benefitted from grainy mustard instead, and some apple mixed into the duxelles I think.
-Defenitely a viable alternative for small microwave ovens!
+Definitely a viable alternative for small microwave ovens!
 
 ## Chuck
 I also attempted using chuck tender. It was the best looking yet.
-Though the meat was, predictably, a bit tougher and dry.
+Though the meat was, predictably, a bit tougher… and dry.
 I think a wet brine next time will do the trick.
