@@ -4,13 +4,13 @@
 		<h1>{{ .Title }}</h1>
 		<nav class="terms clr nowrap" aria-label="Posts" style="font-size:0.75em">
 			{{ with .PrevInSection }}
-			<a href="{{ .RelPermalink }}" aria-label="Previous post" title="Previous post">
-				{{ partialCached `icon` `←` `←` }}
+			<a href="{{ .RelPermalink }}" aria-label="Older post" title="Older post">
+				{{ partialCached `icon` `↓` `↓` }}
 			</a>
 			{{ end }}
 			{{ with .NextInSection }}
-			<a href="{{ .RelPermalink }}" aria-label="Next post" title="Next post">
-				{{ partialCached `icon` `→` `→` }}
+			<a href="{{ .RelPermalink }}" aria-label="Newer post" title="Newer post">
+				{{ partialCached `icon` `↑` `↑` }}
 			</a>
 			{{ end }}
 		</nav>
