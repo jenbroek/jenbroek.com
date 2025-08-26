@@ -93,7 +93,7 @@ p {
 
 a {
 	color: inherit;
-	&:not(main > p &) {
+	&:not(main > p &, figcaption &) {
 		text-decoration: none;
 	}
 }
