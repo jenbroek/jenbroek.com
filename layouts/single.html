@@ -44,7 +44,7 @@
 		{{ if hasPrefix .Subject `edit post` }}
 			{{ $.Store.SetInMap `changelog`
 			    (.AuthorDate.Format `2006-01-02`)
-			    (replaceRE `edit posts?:.*?:` `` .Subject | humanize)
+			    (replaceRE `edit posts?:.*?: ` `` .Subject | strings.FirstUpper)
 			}}
 		{{ end }}
 	{{ end }}
